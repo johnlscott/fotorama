@@ -446,10 +446,11 @@ jQuery.Fotorama = function ($fotorama, opts) {
 
       function triggerTriggerEvent (event) {
         var _index = normalizeIndex(index);
+		var f = (data && (data.length > _index)) ? data[_index] : null;
         triggerEvent(event, {
           index: _index,
           src: src,
-          frame: data[_index]
+          frame: f
         });
       }
 
@@ -679,19 +680,19 @@ jQuery.Fotorama = function ($fotorama, opts) {
         rightLimit = -pos + measures.nw;
 
     $navThumbFrame.each(function () {
-      var $this = $(this),
-          thisData = $this.data(),
-          eq = thisData.eq,
-          getSpecialMeasures = function () {
+      var $this = $(this);
+      var thisData = $this.data();
+      var eq = thisData.eq;
+      var getSpecialMeasures = function () {
             return {
               h: o_thumbSide2,
               w: thisData.w
             }
-          },
-          specialMeasures = getSpecialMeasures(),
-          dataFrame = data[eq] || {},
-          method = dataFrame.thumbfit || opts.thumbfit,
-          position = dataFrame.thumbposition || opts.thumbposition;
+          };
+      var specialMeasures = getSpecialMeasures();
+      var dataFrame = (data && eq && data[eq]) ? data[eq] : {};
+      var method = dataFrame.thumbfit || opts.thumbfit;
+      var position = dataFrame.thumbposition || opts.thumbposition;
 
       specialMeasures.w = thisData.w;
 
