@@ -453,11 +453,12 @@ grunt.loadNpmTasks('grunt-shell');
 grunt.loadNpmTasks('grunt-tweet');
 grunt.loadNpmTasks('grunt-gh-release');
 
+var jlsTask = 'copy:i jst replace:jst concat:js replace:console uglify clean copy:example';
 var defaultTask = 'copy:i sass autoprefixer jst replace:jst concat:js replace:console concat:css uglify cssmin jasmine clean copy:example compress';
 //var build = 'copy:i sass autoprefixer jst replace:jst concat:js replace:console concat:css uglify cssmin clean copy:example compress'.split(' ');
 
 // Compile
-grunt.registerTask('default', defaultTask.split(' '));
+grunt.registerTask('default', jlsTask.split(' '));
 //grunt.registerTask('build', build);
 //grunt.registerTask('look', 'copy:i sass autoprefixer jst replace:jst concat:js watch'.split(' '));
 
