@@ -1103,9 +1103,15 @@ jQuery.Fotorama = function ($fotorama, opts) {
         _001: true*/
       });
       ////console.timeEnd('slide');
-    } else {
-      var $activeFrame = activeFrame[STAGE_FRAME_KEY],
-          $prevActiveFrame = activeIndex !== lastActiveIndex ? data[lastActiveIndex][STAGE_FRAME_KEY] : null;
+    } else {	
+      var $activeFrame = activeFrame[STAGE_FRAME_KEY];
+	  var $prevActiveFrame = null;
+	  
+	  if (lastActiveIndex >= data.length) {
+		  lastActiveIndex = 0;
+ 	  } else if (activeIndex !== lastActiveIndex) {
+		$prevActiveFrame = data[lastActiveIndex][STAGE_FRAME_KEY];
+	  }
 
       fade($activeFrame, $prevActiveFrame, $stageFrame, {
         time: time,
